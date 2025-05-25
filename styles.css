@@ -131,6 +131,161 @@ body {
     background-color: #2980b9;
 }
 
+/* Timeline styles */
+.timeline-section {
+    width: 100vw;
+    margin: 0 auto 2rem auto;
+    overflow-x: hidden;
+}
+.timeline {
+    position: relative;
+    width: 80vw;
+    height: 60px;
+    margin: 0 auto;
+    background: none;
+}
+.timeline-marker {
+    position: absolute;
+    top: 30px;
+    width: 16px;
+    height: 16px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.2);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timeline-date {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 37px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #c3cfe2 0%, #3498db 100%);
+    z-index: 0;
+    border-radius: 2px;
+}
+
+/* Carousel styles */
+.experience-carousel-section {
+    width: 100vw;
+    overflow-x: auto;
+    padding-bottom: 2rem;
+}
+.experience-carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: max-content;
+    margin: 0 auto;
+    padding: 2rem 0;
+    scroll-behavior: smooth;
+}
+.experience-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 320px;
+    min-width: 320px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.4s cubic-bezier(.4,2,.3,1), box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.experience-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 40px rgba(52,152,219,0.15);
+}
+.carousel-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: transform 0.6s cubic-bezier(.4,2,.3,1);
+}
+.carousel-desc {
+    width: 100%;
+    padding: 1.2rem 1rem 0.5rem 1rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.carousel-desc a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.carousel-desc a:hover {
+    color: #217dbb;
+    text-decoration: underline;
+}
+
+/* Parallax effect for carousel images */
+.experience-card .carousel-image {
+    will-change: transform;
+}
+
+@media (max-width: 1200px) {
+    .experience-card {
+        width: 260px;
+        min-width: 260px;
+        height: 340px;
+    }
+    .carousel-image {
+        height: 180px;
+    }
+}
+@media (max-width: 900px) {
+    .timeline, .experience-carousel {
+        width: 98vw;
+    }
+    .experience-card {
+        width: 200px;
+        min-width: 200px;
+        height: 260px;
+    }
+    .carousel-image {
+        height: 120px;
+    }
+}
+@media (max-width: 600px) {
+    .timeline, .experience-carousel {
+        width: 100vw;
+    }
+    .experience-card {
+        width: 140px;
+        min-width: 140px;
+        height: 180px;
+    }
+    .carousel-image {
+        height: 60px;
+    }
+    .carousel-desc a {
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 768px) {
     .profile-container {
         flex-direction: column;
