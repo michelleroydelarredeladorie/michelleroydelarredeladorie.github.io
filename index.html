@@ -3,64 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Michel Leroy - Portfolio</title>
+    <link rel="icon" type="image/png" href="websitelogo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
+        <div class="header-topright">
+            <a href="https://www.linkedin.com/in/michel-leroydeladorie/" target="_blank" class="linkedin-link" title="LinkedIn">
+                <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+            <a href="cv.pdf" target="_blank" class="cv-link" title="View my CV">
+                <img src="cv-miniature.jpg" alt="CV Miniature" class="cv-miniature">
+            </a>
+        </div>
         <div class="profile-container">
-            <img src="000002F.png" alt="Your Name" class="profile-image">
+            <img src="photoprochemise.jpg" alt="Your Name" class="profile-image">
             <div class="profile-text">
-                <h1>Your Name</h1>
-                <p class="subtitle">Software Engineer & AI Enthusiast</p>
-                <p class="bio">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+                <h1>Hey, I'm Michel Leroy</h1>
+                <p class="subtitle">AI Scientist</p>
+                <div class="bio">
+                    <p>
+                      I'm a <strong>Master's student at MIT</strong>, passionate about <strong>Applied AI</strong>, and hoping to change how enterprises interact with these new technologies. I've been deploying tech solutions for the last four years and spent the last two years leading AI efforts in large companies to help them adapt. I have a strong foundation in Machine Learning and a successful track record of bringing technical solutions to reality.
+                    </p>
+                    <p>
+                      I am currently doing research at MIT on Retrieval Augmented Generation and developing <strong>Agents</strong> for <strong>McKinsey</strong>.
+                    </p>
+                </div>
+                <div class="contact-info" style="margin-top: 1.5rem; font-size: 1.15rem; color: #444;">
+                  <strong>Contact:</strong> +1 617 955-7069 | michel.leroydeladorie@gmail.com | Boston, MA 
+                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="timeline-section">
-            <div class="timeline">
-                <div class="timeline-marker" style="left:0%"><span class="timeline-date">2019</span></div>
-                <div class="timeline-marker" style="left:25%"><span class="timeline-date">2020</span></div>
-                <div class="timeline-marker" style="left:50%"><span class="timeline-date">2021</span></div>
-                <div class="timeline-marker" style="left:75%"><span class="timeline-date">2022</span></div>
-                <div class="timeline-marker" style="left:100%"><span class="timeline-date">2023</span></div>
+        <!-- Section Expérience -->
+        <section class="parallax-section" id="experience">
+            <div class="sticky-container">
+                <h2>Experience</h2>
+                <div class="parallax-container">
+                    <div class="parallax-images">
+                        <div class="carousel-spacer"></div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="experiences/CanvasGPT.png" alt="CanvasGPT">
+                                <div class="card-description">
+                                    <p>Product of my research at MIT, best-in-class RAG forfaithfullness and resistance to attacks. Currently being deployed to 650k users through OCW</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="experiences/mckinsey.png" alt="McKinsey">
+                                <div class="card-description">
+                                    <p>Currently creating agents for the largest entreprise use of GenAI, Lilli, to empower 45k McKinsey consultants</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="experiences/wastemanagement.jpg" alt="Waste Management">
+                                <div class="card-description">
+                                    <p>Built a model with Saudi Arabia's government to simulate through advanced optimization their recyclable waste collection for the first time</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="experiences/LVMH.png" alt="LVMH">
+                                <div class="card-description">
+                                    <p>While head of automation, I improved by 20% the productivity of the largest LVMH facility in Asia by 20% deploying an AI planning production</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="experiences/forum.png" alt="Forum">
+                                <div class="card-description">
+                                    <p>As CTO, I built an App, a website and designed an ERP to guide students through the largest student fair in Europe</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-spacer"></div>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="experience-carousel-section">
-            <div class="experience-carousel">
-                <div class="experience-card">
-                    <img src="000002F.png" alt="Experience 1" class="carousel-image">
-                    <div class="carousel-desc">
-                        <a href="Diffusion_Models_Final_Report.pdf" target="_blank">Experience 1: Lorem ipsum dolor sit amet.</a>
+
+        <!-- Section Éducation -->
+        <section class="parallax-section" id="education">
+            <div class="sticky-container">
+                <h2>Éducation</h2>
+                <div class="parallax-container">
+                    <div class="parallax-images">
+                        <div class="carousel-spacer"></div>
+                        <div class="image-card">
+                            <a href="education/Diffusion_Models_Final_Report (1).pdf" target="_blank">
+                                <img src="education/diffusionimages.jpg" alt="Diffusion Models">
+                                <div class="card-description">
+                                    <p>Developped a new way to finetune small diffusion models: improved image quality by 10% while using 87% less data. <u>(📖)</u></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="education/Machine_Learning_Project (2).pdf" target="_blank">
+                                <img src="education/ML.png" alt="ML Rental Clothing">
+                                <div class="card-description">
+                                    <p>Developed a multimodal using optimization and prediction to price unique second hand items, boosting revenue by 37% <u>(📖)</u></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="education/Documentation_MyVelib__Copy_.pdf" target="_blank">
+                                <img src="education/MyVelib.png" alt="MyVelib">
+                                <div class="card-description">
+                                    <p>Refactored bike-sharing app in Java using patterns & SOLID design to handle deployment at scale <u>(📖)</u></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <img src="education/Chua_attractor.jpg" alt="Chua's Attractor">
+                            <div class="card-description">
+                                <p>I built a mini-computer that uses physical chaos for a perfect encryption </p>
+                            </div>
+                        </div>
+                        <div class="carousel-spacer"></div>
                     </div>
                 </div>
-                <div class="experience-card">
-                    <img src="000002F.png" alt="Experience 2" class="carousel-image">
-                    <div class="carousel-desc">
-                        <a href="Diffusion_Models_Final_Report.pdf" target="_blank">Experience 2: Consectetur adipiscing elit.</a>
-                    </div>
-                </div>
-                <div class="experience-card">
-                    <img src="000002F.png" alt="Experience 3" class="carousel-image">
-                    <div class="carousel-desc">
-                        <a href="Diffusion_Models_Final_Report.pdf" target="_blank">Experience 3: Sed do eiusmod tempor.</a>
-                    </div>
-                </div>
-                <div class="experience-card">
-                    <img src="000002F.png" alt="Experience 4" class="carousel-image">
-                    <div class="carousel-desc">
-                        <a href="Diffusion_Models_Final_Report.pdf" target="_blank">Experience 4: Incididunt ut labore.</a>
-                    </div>
-                </div>
-                <div class="experience-card">
-                    <img src="000002F.png" alt="Experience 5" class="carousel-image">
-                    <div class="carousel-desc">
-                        <a href="Diffusion_Models_Final_Report.pdf" target="_blank">Experience 5: Et dolore magna aliqua.</a>
+            </div>
+        </section>
+
+        <!-- Section Informations Supplémentaires -->
+        <section id="additional">
+            <div class="sticky-container">
+                <h2>Informations Supplémentaires</h2>
+                <div class="parallax-container">
+                    <div class="parallax-images">
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="Additional Information/debating.jpg" alt="Additional Info 1">
+                                <div class="card-description">
+                                    <p>I love public speaking, here I am at the French house of representatives where I arrived third at the national debating championship</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="Additional Information/waterpolo.jpg" alt="Water Polo">
+                                <div class="card-description">
+                                    <p>I do water polo because it's a demanding team. My varsity team ranked 5th in France</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-card">
+                            <a href="#" target="_blank">
+                                <img src="Additional Information/olympiades.jpg" alt="Olympiades">
+                                <div class="card-description">
+                                    <p>I enjoy nature and the outdoors. I finished 5th at the national olympiades of geology</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,45 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Parallax effect for carousel images
-    const carousel = document.querySelector('.experience-carousel');
-    const images = document.querySelectorAll('.carousel-image');
-    const timeline = document.querySelector('.timeline');
-    const timelineMarkers = document.querySelectorAll('.timeline-marker');
-    
-    function updateParallax() {
-        const scrollLeft = carousel.scrollLeft;
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        const percent = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-        images.forEach((img, i) => {
-            // Parallax: move images slightly based on scroll
-            img.style.transform = `translateX(${percent * 40 - i * 8}px)`;
-        });
-        // Move timeline markers in sync with carousel scroll
-        timelineMarkers.forEach((marker, i) => {
-            marker.style.transform = `translateX(-50%) translateX(${percent * 10 - i * 2}px)`;
-        });
+    const sections = document.querySelectorAll('.parallax-section');
+    let lockedSection = null;
+    let virtualScroll = 0;
+    let startScroll = 0;
+    let endScroll = 0;
+    let maxScroll = 0;
+    let ticking = false;
+
+    function getSectionScrollInfo(section) {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = window.scrollY + rect.top;
+        const sectionHeight = rect.height;
+        const start = sectionTop;
+        const end = sectionTop + sectionHeight - window.innerHeight;
+        return { start, end, sectionHeight };
     }
 
-    if (carousel) {
-        carousel.addEventListener('scroll', updateParallax);
-        // Initial update
-        updateParallax();
+    function lockScroll(y) {
+        window.scrollTo(0, y);
     }
 
-    // Optional: allow mouse wheel to scroll horizontally
-    carousel.addEventListener('wheel', (e) => {
-        if (e.deltaY !== 0) {
+    function updateHorizontalScroll() {
+        let foundLock = false;
+        sections.forEach(section => {
+            const imagesStrip = section.querySelector('.parallax-images');
+            const { start, end, sectionHeight } = getSectionScrollInfo(section);
+            if (window.scrollY >= start && window.scrollY <= end) {
+                if (!lockedSection) {
+                    lockedSection = section;
+                    virtualScroll = 0;
+                    startScroll = start;
+                    endScroll = end;
+                    maxScroll = imagesStrip.scrollWidth - imagesStrip.parentElement.clientWidth;
+                    // Lock the scroll position
+                    lockScroll(start);
+                }
+                foundLock = true;
+                // Move images horizontally based on virtualScroll
+                const clampedProgress = Math.max(0, Math.min(1, virtualScroll / (endScroll - startScroll)));
+                if (imagesStrip) {
+                    imagesStrip.style.transform = `translateX(${-maxScroll * clampedProgress}px)`;
+                }
+            } else if (imagesStrip) {
+                // Set to start or end position
+                if (window.scrollY < start) {
+                    imagesStrip.style.transform = 'translateX(0)';
+                } else if (window.scrollY > end) {
+                    const maxScroll = imagesStrip.scrollWidth - imagesStrip.parentElement.clientWidth;
+                    imagesStrip.style.transform = `translateX(${-maxScroll}px)`;
+                }
+            }
+        });
+        if (!foundLock) {
+            lockedSection = null;
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateHorizontalScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Strict scroll lock and virtual scroll
+    window.addEventListener('wheel', (e) => {
+        if (lockedSection) {
             e.preventDefault();
-            carousel.scrollLeft += e.deltaY;
+            const delta = e.deltaY;
+            virtualScroll += delta;
+            virtualScroll = Math.max(0, Math.min(virtualScroll, endScroll - startScroll));
+            // If at the end, release the lock and allow vertical scroll
+            if (virtualScroll >= endScroll - startScroll && delta > 0) {
+                lockedSection = null;
+                window.scrollTo(0, endScroll + 1);
+            } else if (virtualScroll <= 0 && delta < 0) {
+                lockedSection = null;
+                window.scrollTo(0, startScroll - 1);
+            } else {
+                lockScroll(startScroll);
+                updateHorizontalScroll();
+            }
         }
     }, { passive: false });
 
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+    // Initial call
+    updateHorizontalScroll();
 }); 
